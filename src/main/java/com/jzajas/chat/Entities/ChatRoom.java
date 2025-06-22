@@ -25,6 +25,6 @@ public class ChatRoom {
     private Date createdAt;
 
     @Column(name = "messages")
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Message> messages = new ArrayList<>();
 }

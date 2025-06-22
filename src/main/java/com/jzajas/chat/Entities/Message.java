@@ -34,9 +34,13 @@ public class Message {
     @JoinColumn(name = "room_id")
     private ChatRoom room;
 
+    @Column(name = "updated")
+    private Boolean updated;
+
 
     @PrePersist
     public void initializeNewMessage() {
         this.createdAt = new Date();
+        this.updated = false;
     }
 }

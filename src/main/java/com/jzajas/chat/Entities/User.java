@@ -35,6 +35,10 @@ public class User {
     @OneToMany(mappedBy = "sender", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Message> messages = new ArrayList<>();
 
+    @Column(name = "rooms")
+    @ManyToMany(mappedBy = "participants")
+    private List<Message> rooms = new ArrayList<>();
+
 
     @PrePersist
     public void initializeNewUser() {
