@@ -1,6 +1,8 @@
 package com.jzajas.chat.Services.Interfaces;
 
 
+import com.jzajas.chat.DTO.Input.UserCreationDTO;
+import com.jzajas.chat.DTO.Output.UserShowDTO;
 import com.jzajas.chat.Entities.User;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -9,16 +11,16 @@ import java.util.List;
 public interface UserServiceInterface {
 
     @Transactional
-    User createNewUser(User user);
+    User createNewUser(UserCreationDTO dto);
 
     @Transactional(readOnly = true)
-    User findUserById(Long id);
+    UserShowDTO getUserById(Long id);
 
     @Transactional(readOnly = true)
-    List<User> findUserByUsername(String name);
+    List<UserShowDTO> getUsersByUsername(String name);
 
     @Transactional
-    User updateUser(User user);
+    User updateUser(UserCreationDTO dto, Long id);
 
     @Transactional
     void deleteUserById(Long id);

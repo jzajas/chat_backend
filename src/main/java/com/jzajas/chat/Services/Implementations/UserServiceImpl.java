@@ -1,5 +1,7 @@
 package com.jzajas.chat.Services.Implementations;
 
+import com.jzajas.chat.DTO.Input.UserCreationDTO;
+import com.jzajas.chat.DTO.Output.UserShowDTO;
 import com.jzajas.chat.Entities.User;
 import com.jzajas.chat.Repositories.UserRepository;
 import com.jzajas.chat.Services.Interfaces.UserServiceInterface;
@@ -17,31 +19,45 @@ public class UserServiceImpl implements UserServiceInterface {
 
 
     @Override
-    public User createNewUser(User user) {
+    public User createNewUser(UserCreationDTO dto) {
+        User user = createNewUserFromDTO(dto);
         return userRepository.save(user);
     }
 
+//    TODO implement this to return DTO from database
     @Override
-    public User findUserById(Long id) {
-        Optional<User> user = userRepository.findById(id);
-        return user.orElse(null);
+    public UserShowDTO getUserById(Long id) {
+//        Optional<UserShowDTO> user = userRepository.findById(id);
+
+        return new UserShowDTO();
     }
 
+//    TODO implement this to return list of DTO from repository
     @Override
-    public List<User> findUserByUsername(String username) {
-        return userRepository.findAllByUsername(username);
+    public List<UserShowDTO> getUsersByUsername(String username) {
+
+//        return userRepository.findAllByUsername(username);
+        return List.of();
     }
 
 //    TODO exception to change
     @Override
-    public User updateUser(User user) {
-        User existing = userRepository.findById(user.getId())
+    public User updateUser(UserCreationDTO dto, Long id) {
+        User existing = userRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));
-        return userRepository.save(user);
+        User newUser = createNewUserFromDTO(dto);
+        return userRepository.save(newUser);
     }
 
     @Override
     public void deleteUserById(Long id) {
         userRepository.deleteById(id);
+    }
+
+
+//    TODO implement this method to create user from dto
+    private User createNewUserFromDTO(UserCreationDTO dto) {
+        User newUSer = new User();
+        return newUSer;
     }
 }
