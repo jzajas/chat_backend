@@ -20,6 +20,9 @@ public class ChatRoom {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Column(name = "name")
+    private String name;
+
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at")
     private Date createdAt;
@@ -27,4 +30,14 @@ public class ChatRoom {
     @Column(name = "messages")
     @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Message> messages = new ArrayList<>();
+
+    @Column(name = "messages")
+    @OneToMany(mappedBy = "user", orphanRemoval = true)
+    private List<User> participants = new ArrayList<>();
+
+
+    @PrePersist
+    private void initializeNewChatRoom() {
+        this.createdAt = new Date();
+    }
 }

@@ -1,4 +1,20 @@
 package com.jzajas.chat.DTO.Output;
 
+import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.Date;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class ChatRoomShowDTO {
+
+    @NotNull
+    private String name;
+
+    @NotNull
+    private Date createdAt;
 }

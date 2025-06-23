@@ -37,11 +37,11 @@ public class User {
 
     @Column(name = "rooms")
     @ManyToMany(mappedBy = "participants")
-    private List<Message> rooms = new ArrayList<>();
+    private List<ChatRoom> rooms = new ArrayList<>();
 
 
     @PrePersist
-    public void initializeNewUser() {
+    private void initializeNewUser() {
         this.createdAt = new Date();
     }
 }

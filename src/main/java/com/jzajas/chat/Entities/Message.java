@@ -20,7 +20,7 @@ public class Message {
     private long id;
 
     @Column(name = "content")
-    private String content;
+    private String message;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at")
@@ -39,7 +39,7 @@ public class Message {
 
 
     @PrePersist
-    public void initializeNewMessage() {
+    private void initializeNewMessage() {
         this.createdAt = new Date();
         this.updated = false;
     }
