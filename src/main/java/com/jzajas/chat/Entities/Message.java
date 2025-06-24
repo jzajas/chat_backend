@@ -26,13 +26,13 @@ public class Message {
     @Column(name = "created_at")
     private Date createdAt;
 
-    @ManyToOne
-    @JoinColumn(name = "sender_id")
-    private User sender;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    @ManyToOne
-    @JoinColumn(name = "room_id")
-    private ChatRoom room;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "chat_room_id")
+    private ChatRoom chatRoom;
 
     @Column(name = "updated")
     private Boolean updated;

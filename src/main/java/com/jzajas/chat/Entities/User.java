@@ -32,7 +32,7 @@ public class User {
     private Date createdAt;
 
     @Column(name = "messages")
-    @OneToMany(mappedBy = "sender", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Message> messages = new ArrayList<>();
 
     @Column(name = "rooms")

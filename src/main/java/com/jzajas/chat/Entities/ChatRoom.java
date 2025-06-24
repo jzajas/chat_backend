@@ -28,11 +28,15 @@ public class ChatRoom {
     private Date createdAt;
 
     @Column(name = "messages")
-    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "chatRoom", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Message> messages = new ArrayList<>();
 
-    @Column(name = "messages")
-    @OneToMany(mappedBy = "user", orphanRemoval = true)
+    @ManyToMany
+    @JoinTable(
+            name = "chatroom_participants",
+            joinColumns = @JoinColumn(name = "chatroom_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
     private List<User> participants = new ArrayList<>();
 
 
